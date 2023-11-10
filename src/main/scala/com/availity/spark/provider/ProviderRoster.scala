@@ -15,10 +15,9 @@ object ProviderRoster {
       .option("header", true)
       .option("sep", "|")
       .csv("C:\\Users\\19136\\Downloads\\providers.csv")
-    provider.printSchema
+    provider.printSchema()
 
     val visits = spark.read
-      .option("inferSchema", true)
       .csv("C:\\Users\\19136\\Downloads\\visits.csv")
       .toDF("visit_id", "provider_id", "date_of_service")
     visits.printSchema()
@@ -38,8 +37,6 @@ object ProviderRoster {
       .mode("overwrite")
       .json("C:\\Users\\19136\\Downloads\\no_of_visits_per_provider_per_month")
     spark.read.json("C:\\Users\\19136\\Downloads\\no_of_visits_per_provider_per_month").show(100)
-
-
   }
   def no_of_visits_per_provider(visits: DataFrame, provider: DataFrame): DataFrame = {
     /*
@@ -75,6 +72,4 @@ object ProviderRoster {
       .selectExpr("provider_id","month_of_service","count as no_of_visits_per_month")
     result2Df
   }
-
-
 }
