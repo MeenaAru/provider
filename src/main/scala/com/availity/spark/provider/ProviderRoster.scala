@@ -33,7 +33,7 @@ object ProviderRoster {
     spark.read.json("C:\\Users\\19136\\Downloads\\no_of_visits_per_provider").show(100)
 
     // Task 2 no_of_visits_per_provider_per_month
-    no_of_visits_per_provider_per_month(visits).write
+    no_of_visits_per_provider_per_month(visits).coalesce(10).write
       .mode("overwrite")
       .json("C:\\Users\\19136\\Downloads\\no_of_visits_per_provider_per_month")
     spark.read.json("C:\\Users\\19136\\Downloads\\no_of_visits_per_provider_per_month").show(100)
